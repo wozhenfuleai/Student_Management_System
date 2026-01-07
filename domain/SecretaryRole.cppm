@@ -8,13 +8,10 @@ public:
     SecretaryRole(string id,string name,string gender, string department);
     virtual string getRoleType()override;
 
-private:
-
-    string department;      // 所属院系
 };
 
-SecretaryRole::SecretaryRole(string id,string name,string gender, string department)
-:Role(id,name,gender),department(department)
+SecretaryRole::SecretaryRole(string id,string name,string gender)
+:Role(id,name,gender)
 {}
 string SecretaryRole::getRoleType(){
     return std::format("secretary");

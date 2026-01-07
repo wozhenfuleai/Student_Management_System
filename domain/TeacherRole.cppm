@@ -1,18 +1,46 @@
 export module TeacherRole;
 import std;
 import Role;
+struct GradeRecord{
+    string studentId;
+    string taskId;
+    float score;
+};
+
 export class TeacherRole : public Role{
 public:
+    TeacherRole(string id, string name, string gender);
     // 核心业务逻辑方法：
-    bool assignToTask(TeachingTask* task);                         // 接受授课任务
-    bool inputStudentGrade(StudentRole* student, TeachingTask* task, float score);  // 录入成绩
-    int getTeachingWorkload();                                     // 计算工作量
-    vector<StudentRole*> getClassStudents(string taskId);          // 获取班级花名册
-
+    bool inputStudentGrade(const string& studentId, const string& taskId, float score);  // 录入成绩
     virtual string getRoleType();
-    virtual string getSpecificId();
 private:
-    string department;      // 院系，用于课程分配
-    vector<TeachingTask*> assignedTasks;  // 授课任务，用于工作量计算和时间安排
-
+    map<string, GradeRecord> gradeRecords;
 };
+TeacherRole::TeacherRole(string id, string name, string gender)
+    : Role(id, name, gender)
+{}
+
+bool TeacherRole::inputStudentGrade(const string& studentId, const string& taskId, float score) {
+    // 简单的参数验证
+    if (studentId.empty() || taskId.empty()) {
+        return false;
+    }
+
+    if (score < 0.0f || score > 100.0f){
+        return false;  // 分数范围0-100
+    }
+
+    // 生成唯一key
+    string key = studentId + "|" + taskId;
+
+    // 创建或更新成绩记录
+    GradeRecord record;
+    record.studentId = studentId;
+    record.taskId = taskId;
+    record.score = score;
+
+    // 直接插入或覆盖
+    gradeRecords[key] = record;
+
+    return true;
+}

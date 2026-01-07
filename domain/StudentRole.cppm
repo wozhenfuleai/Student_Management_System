@@ -7,18 +7,18 @@ public:
     virtual string getRoleType();
     //选课前检查检查时间冲突
     bool canEnroll(const string& newTime,const vector<string>& enrolledTime);
+    Student::hasTask(string taskId); //是否选了某门课
     bool enrollInTask(string taskId);     // 选课
     bool dropTask(string taskId);              // 退课
 
 
 };
 private:
-    //vector<string> grades_id;
-    vector<string> enrolledTasks_id;  // 已选课程，用于用于时间冲突检查和课程管理
+    vector<string> enrolledTasksId;  // 已选课程，用于用于时间冲突检查和课程管理
 };
 
 StudentRole::StudentRole(string id,string name,string gender,float currentGPA,vector<string> vec)
-:Role(id,name,gender),currentGPA(currentGPA),enrolledTasks_id(vec)
+:Role(id,name,gender),currentGPA(currentGPA),enrolledTasksId(vec)
 {}
 
 string Role::getRoleType(){
@@ -35,22 +35,22 @@ bool Student::canEnroll(const string& newTime,const vector<string>& enrolledTime
     }
     return true;
 }
+bool StudentRole::hasTask(string taskId){
+    return find(enrolledTaskIds.begin(), enrolledTaskIds.end(), taskId) != enrolledTaskIds.end();
+}
 
 bool Student::enrollInTask(string taskId){
 //查找是否已选
-    auto it = std::find(enrolledTasks_id.begin(),enrolledTasks_id.end(),taskId);
-    if(it != enrolledTasks_end()){
-        return false;
-    }
+    if (hasTask(taskId)) return false;
 //若未选
-    enrolledTasks_id.emplace_back(taskId);
+    enrolledTasksId.emplace_back(taskId);
     return true;
 }
 
 bool dropTask(string taskId){
-    auto it = find(enrolledTaskIds.begin(), enrolledTaskIds.end(), taskId);
-    if (it != enrolledTaskIds.end()){
-        enrolledTaskIds.erase(it);
+    auto it = find(enrolledTasksId.begin(), enrolledTasksId.end(), taskId);
+    if (it != enrolledTasksId.end()){
+        enrolledTasksId.erase(it);
         return true;
     }
     return false;

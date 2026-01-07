@@ -1,18 +1,30 @@
+/*
 export module TeachingTask;
 import std;
-export class Grade {
+export class Grade{
 public:
+    Grade(string gradeId,float score, string studentId,string taskId);
     // 核心业务逻辑方法：
-    bool isPass();                                         // 是否及格
-    string getGradeLevel();                                // 成绩等级
-    void updateGrade(float newScore, string newComment);   // 更新成绩
+    bool isPass();        // 是否及格
+    void updateGrade(float newScore);   // 更新成绩
+    string getId();
+    string getScore();
 private:
+    string gradeId;
     float score;
-    string comment;
-    string dateRecorded;
-    StudentRole* student;
-    TeachingTask* task;
+    //关联
+    string studentId;
+    string taskId;
 };
-            //删掉，这应该是领域层的工作
-            //bool createCourse(Course* course);                     // 创建课程,同时设置选课时间，
-            //bool publishTeachingTask(TaskInfo taskInfo);           // 发布教学任务
+
+bool Grade::isPass(){   return score >= 60.0f; }
+Grade::Grade(string gradeId,float score, string studentId,string taskId)
+:gradeId(gradeId),score(score),studentId(studentId),taskId(taskId)
+{}
+
+void Grade::updateGrade(float newScore){
+    score = newScore;
+}
+string Grade::getId(){ return gradeId;}
+string Grade::getScore(){ return score;}
+*/
