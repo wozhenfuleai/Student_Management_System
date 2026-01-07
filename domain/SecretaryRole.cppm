@@ -2,7 +2,7 @@ export module SecretaryRole;
 import std;
 import Role;
 import TaskInfo;
-
+using std::sting;
 export class SecretaryRole: public Role{
 public:
     SecretaryRole(string id,string name,string gender, string department);

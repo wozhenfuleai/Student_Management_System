@@ -1,9 +1,9 @@
 export module TeachingTask;
 import std;
-
+using std::sting;
 export class Course {
 public:
-    Course(string courseId, string name, float credits,long long enrollStart, long long enrollEnd);
+    Course(string courseId, string name, float credits);
     // 核心业务逻辑方法：
     string getInfo();                     // 获取课程详情
 
@@ -13,7 +13,7 @@ private:
     float credits;  //课程对应学分
 };
 
-Course::Course(string cId, string name, float credits,long long enrollStart, long long enrollEnd)
+Course::Course(string cId, string name, float credits)
 :courseId(cId),name(name),credits(credits)
 {}
 

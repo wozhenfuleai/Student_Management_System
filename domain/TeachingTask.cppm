@@ -42,7 +42,7 @@ enrollStart(enrollStart),enrollEnd(enrollEnd),maxCapacity(max),currentEnrolled(0
 {}
 
 bool TeachingTask::isFull(){
-    return currentEnrolled < maxCapacity;
+    return currentEnrolled >= maxCapacity;
 }
 
 bool TeachingTask::isInEnrollTime(){
@@ -105,7 +105,7 @@ string TeachingTask::getInfo(){
         if (!tm) return "时间错误";
 
         std::ostringstream oss;
-        oss << std::put_time(tm, "%m月%d日");
+        oss << std::put_time(tm, "%Y年%m月%d日");
         return oss.str();
     };
 

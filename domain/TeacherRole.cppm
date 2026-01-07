@@ -1,6 +1,8 @@
 export module TeacherRole;
 import std;
 import Role;
+using std::map;
+using std::sting;
 struct GradeRecord{
     string studentId;
     string taskId;
@@ -19,7 +21,9 @@ private:
 TeacherRole::TeacherRole(string id, string name, string gender)
     : Role(id, name, gender)
 {}
-
+string TeacherRole::getRoleType(){
+    return std::format("teacher");
+}
 bool TeacherRole::inputStudentGrade(const string& studentId, const string& taskId, float score) {
     // 简单的参数验证
     if (studentId.empty() || taskId.empty()) {

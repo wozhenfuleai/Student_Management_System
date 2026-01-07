@@ -1,18 +1,16 @@
 export module StudentRole;
 import std;
 import Role;
+using std::sting;
 export class StudentRole: public Role{
 public:
     StudentRole(string id,string name,string gender,float currentGPA,vector<string> vec);
     virtual string getRoleType();
     //选课前检查检查时间冲突
     bool canEnroll(const string& newTime,const vector<string>& enrolledTime);
-    Student::hasTask(string taskId); //是否选了某门课
+    bool Student::hasTask(string taskId); //是否选了某门课
     bool enrollInTask(string taskId);     // 选课
     bool dropTask(string taskId);              // 退课
-
-
-};
 private:
     vector<string> enrolledTasksId;  // 已选课程，用于用于时间冲突检查和课程管理
 };
@@ -21,7 +19,7 @@ StudentRole::StudentRole(string id,string name,string gender,float currentGPA,ve
 :Role(id,name,gender),currentGPA(currentGPA),enrolledTasksId(vec)
 {}
 
-string Role::getRoleType(){
+string StudentRole::getRoleType(){
     return std::format("student");
 }
 
@@ -29,7 +27,7 @@ string Role::getRoleType(){
 //规则：一个学生不能在同一时间段上两门不同的课
 bool Student::canEnroll(const string& newTime,const vector<string>& enrolledTime){
     for(auto&& time :enrolledTime){
-        if(newTime == enrolledTime){
+        if(newTime == Time){
             return false;
         }
     }

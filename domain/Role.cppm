@@ -1,5 +1,6 @@
 export module Role;
 import std;
+using std::sting;
 export class Role{
 public:
     Role(string id,string name,string gender);
