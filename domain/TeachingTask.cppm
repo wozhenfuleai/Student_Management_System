@@ -36,9 +36,9 @@ private:
 };
 
 
-TeachingTask::TeachingTask(string taskId,string timeSlot,std::time_t enrollStart,
-std::time_t enrollEnd,int max)
-:taskId(taskId),timeSlot(timeSlot),enrollStart(enrollStart),enrollEnd(enrollEnd),maxCapacity(max),currentEnrolled(0)
+TeachingTask::TeachingTask(string TaskId,string TimeSlot,std::time_t EnrollStart,
+std::time_t EnrollEnd,int max)
+:taskId(TaskId),timeSlot(TimeSlot),enrollStart(EnrollStart),enrollEnd(EnrollEnd),maxCapacity(max),currentEnrolled(0)
 {}
 
 bool TeachingTask::isFull(){

@@ -15,8 +15,8 @@ private:
     float credits;  //课程对应学分
 };
 
-Course::Course(string cId, string name, float credits)
-:courseId(cId),name(name),credits(credits)
+Course::Course(string cId, string Name, float Credits)
+:courseId(cId),name(Name),credits(Credits)
 {}
 
 string Course::getInfo(){

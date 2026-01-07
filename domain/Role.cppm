@@ -17,8 +17,8 @@ private:
     string gender;
 };
 
-Role::Role(string id,string name, string gender)
-: id(id),name(name),gender(gender)
+Role::Role(string Id,string Name, string Gender)
+: id(Id),name(Name),gender(Gender)
 {}
 
 Role::~Role(){}
