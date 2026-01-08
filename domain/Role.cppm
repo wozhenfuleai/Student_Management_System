@@ -7,7 +7,9 @@ public:
     virtual ~Role();
 
     string getProfile(); //返回个人所有信息组成的字符串
-    string getId();   //返回id
+    string getId();
+    string getName() const noexcept;
+    string getGender() const noexcept;
     virtual string getRoleType() = 0;//返回用户类型
 private:
     string id;
@@ -15,8 +17,8 @@ private:
     string gender;
 };
 
-Role::Role(string id,string name, string gender)
-: id(id),name(name),gender(gender)
+Role::Role(string Id,string Name, string Gender)
+: id(Id),name(Name),gender(Gender)
 {}
 
 Role::~Role(){}
@@ -27,3 +29,5 @@ string Role::getProfile(){
 string Role::getId(){
     return std::format("{}",id);
 }
+string Role::getName() const noexcept{ return name; }
+string Role::getGender() const noexcept{ return gender; }

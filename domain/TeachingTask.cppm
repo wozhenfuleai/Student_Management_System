@@ -16,9 +16,12 @@ public:
     bool assignTeacher(string teacherId);  // 分配教师
     bool hasTimeConflictWithOther(TeachingTask& other); // 与某个Task是否存在上课时间冲突
 
-    string getInfo(); //
-    string getTime(); //获取该课程的上课时间段
+    string getInfo();
     string getId();
+    string getTimeSlot();
+    std::time_t getEnrollStart();
+    std::time_t getEnrollEnd();
+    int getMaxCapacity();
 private:
     string taskId;
     string timeSlot;  //学期与上课时间段：格式要固定！！
@@ -33,9 +36,9 @@ private:
 };
 
 
-TeachingTask::TeachingTask(string taskId,string timeSlot,std::time_t enrollStart,
-std::time_t enrollEnd,int max)
-:taskId(taskId),timeSlot(timeSlot),enrollStart(enrollStart),enrollEnd(enrollEnd),maxCapacity(max),currentEnrolled(0)
+TeachingTask::TeachingTask(string TaskId,string TimeSlot,std::time_t EnrollStart,
+std::time_t EnrollEnd,int max)
+:taskId(TaskId),timeSlot(TimeSlot),enrollStart(EnrollStart),enrollEnd(EnrollEnd),maxCapacity(max),currentEnrolled(0)
 {}
 
 bool TeachingTask::isFull(){
@@ -110,9 +113,8 @@ string TeachingTask::getInfo(){
     taskId,timeSlot,maxCapacity,currentEnrolled,timeToString(enrollStart),timeToString(enrollEnd));
 }
 
-string TeachingTask::getTime(){
-    return timeSlot;
-}
-string TeachingTask::getId(){
-    return taskId;
-}
+string TeachingTask::getTimeSlot(){ return timeSlot; }
+string TeachingTask::getId(){ return taskId; }
+std::time_t TeachingTask::getEnrollStart(){ return enrollStart;}
+std::time_t TeachingTask::getEnrollEnd(){ return enrollEnd;}
+int TeachingTask::getMaxCapacity(){ return maxCapacity;}
